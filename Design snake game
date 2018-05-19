@@ -15,7 +15,7 @@ public:
         else if (direction == "D") ++head.first;
         else if (direction == "L") --head.second;
         else if (direction == "R") ++head.second;
-        //judge whethe the game is over
+        //judge whether the game is over
         if (count(snake.begin(),snake.end(),head) || head.first < 0 || head.first >= height || head.second < 0 || head.second >= width){
             return -1;
         }
