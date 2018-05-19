@@ -1,0 +1,36 @@
+#Note:The Coordinate System of the game is Vertical x axis and Horizontal y axis.
+class SnakeGame{
+public:
+    SnakeGame(int width,int height,vector<pair<int,int>> food){
+        this.width = width;
+        this.height = height;
+        this.food = food;
+        score = 0;
+        snake.push_back({0,0});
+    }
+    int move(string Direction){
+        auto head = snake.front(), tail = snake.back();
+        snake.pop_back();
+        if (direction == "U") --head.first;
+        else if (direction == "D") ++head.first;
+        else if (direction == "L") --head.second;
+        else if (direction == "R") ++head.second;
+        //judge whethe the game is over
+        if (count(snake.begin(),snake.end(),head) || head.first < 0 || head.first >= height || head.second < 0 || head.second >= width){
+            return -1;
+        }
+        //the implement of move is to pop the tail and insert the new head,and the middle section is unchanged.
+        snake.insert(snake.begin(),head);
+        //implement eating the food
+        if (!food.empty() && head == food.front()){
+            food.erase(food.begin());
+            snake.push_back(tail);//push back the tail to implement increase the length of snake
+            ++score;
+        }
+        return score;
+    }
+private:
+    int width,height,score;
+    vector<pair<int,int>> food,snake;
+
+}
