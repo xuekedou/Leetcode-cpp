@@ -34,3 +34,7 @@ private:
     vector<pair<int,int>> food,snake;
 
 }
+
+
+
+
